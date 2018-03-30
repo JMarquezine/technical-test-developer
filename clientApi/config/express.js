@@ -5,9 +5,12 @@ var bodyParser = require('body-parser');
 module.exports = function() {
     var api = express();
 
-    api.use(bodyParser.urlencoded({ extended = true }));
-    load('routes', {cwd = 'api'})
-        .then('infra')
+    api.use(bodyParser.urlencoded({extended: true}));
+
+    load('infra',{cwd: 'api'})
+        .then('models')
+        .then('controllers')
+        .then('routes')
         .into(api);
 
     return api;

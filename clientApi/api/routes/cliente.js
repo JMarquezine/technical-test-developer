@@ -1,4 +1,5 @@
 module.exports = function(api) {
+    var clienteController = new api.controllers.clienteController();
     api.get('/', function(request, response) {
         response.json( {
             message: 'Api do Cliente',
@@ -6,25 +7,34 @@ module.exports = function(api) {
         });
     });
 
-    api.get('/cliente', function(request, response) {
-        response.send();
+    api.get('/api/cliente', function(request, response) {
+        clienteController.listarClientes(function(error, resultados) {
+            if (error) {
+                console.log(error);
+                response.json({
+                    message: error,
+                    status: 500
+                });
+            }
+
+            response.json({
+                resultados
+            });
+        });
     });
 
-    api.post('/cliente', function(request, response) {
-        var cliente = request.body;
-        
-        if (cliente.cpf == null)
-        {
-            response;
-        }
-
-    });
-
-    api.put('/cliente', function(request, response) {
-
-    });
-
-    api.delete('/cliente', function(request, response) {
-
+    api.post('/api/cliente', function(request, response) {
+        clienteController.salvarCliente(request.body, function(error, resultado) {
+            if (error) {
+                console.log(error);
+                response.json({
+                    message: error,
+                    status: 500
+                });
+            }
+            response.json({
+                resultado
+            });
+        });
     });
 }
