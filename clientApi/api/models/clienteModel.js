@@ -52,7 +52,6 @@ module.exports = function(api){
             type: String,
             validate: {
                 validator: function(cpf) {
-                    console.log('passou aqui');
                     return isCpf(cpf);
                 },
                 message: 'CPF informado é inválido!'

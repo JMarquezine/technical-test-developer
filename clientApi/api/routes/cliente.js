@@ -12,7 +12,6 @@ module.exports = function(api) {
         {
             clienteController.procurarCliente(request.query.cpf, function(error, result){
                 if (error) {
-                    console.log(error);
                     response.json({
                         message: error,
                         status: 500
@@ -26,7 +25,6 @@ module.exports = function(api) {
         } else {
             clienteController.listarClientes(function(error, result) {
                 if (error) {
-                    console.log(error);
                     response.json({
                         message: error,
                         status: 500
@@ -43,7 +41,6 @@ module.exports = function(api) {
     api.post('/api/cliente', function(request, response) {
         clienteController.salvarCliente(request.body, function(error, result) {
             if (error) {
-                console.log(error);
                 response.json({
                     message: error,
                     status: 500

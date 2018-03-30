@@ -11,7 +11,14 @@ clienteController.prototype.listarClientes = function(callback) {
 
 clienteController.prototype.salvarCliente = function(clienteBody, callback) {
     if (clienteBody.cpf) {
-        Cliente.findOneAndUpdate({cpf: clienteBody.cpf}, clienteBody, {upsert: true, new: true}, callback);
+        var cliente = new Cliente(clienteBody);
+        error = cliente.validateSync();
+        if (error) {
+            callback(error.errors);
+        }
+        else{
+            Cliente.findOneAndUpdate({cpf: clienteBody.cpf}, clienteBody, {upsert: true, new: true}, callback);
+        }
     }
 }
 
