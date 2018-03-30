@@ -31,6 +31,7 @@ module.exports = function(api) {
                     message: error,
                     status: 500
                 });
+                return;
             }
             response.json({
                 resultado
