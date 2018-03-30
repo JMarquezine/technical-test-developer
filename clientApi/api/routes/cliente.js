@@ -23,20 +23,21 @@ module.exports = function(api) {
                     result
                 });
             });
-        }
-        clienteController.listarClientes(function(error, result) {
-            if (error) {
-                console.log(error);
+        } else {
+            clienteController.listarClientes(function(error, result) {
+                if (error) {
+                    console.log(error);
+                    response.json({
+                        message: error,
+                        status: 500
+                    });
+                }
+    
                 response.json({
-                    message: error,
-                    status: 500
+                    result
                 });
-            }
-
-            response.json({
-                result
             });
-        });
+        }
     });
 
     api.post('/api/cliente', function(request, response) {

@@ -1,5 +1,5 @@
-var mongoose = require('mongoose');
-var Cliente = mongoose.model('Clientes');
+var mongoose = undefined;
+var Cliente = undefined;
 
 function clienteController() {
     
@@ -20,5 +20,7 @@ clienteController.prototype.procurarCliente = function(cpfPesquisa, callback) {
 }
 
 module.exports = function(api) {
+    mongoose = api.infra.db;
+    Cliente = mongoose.model('Clientes');
     return clienteController;
 }

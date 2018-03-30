@@ -1,3 +1,5 @@
+const isCpf = require('iscpf');
+
 module.exports = function(api){
     var Schema = api.infra.db.Schema;
 
@@ -48,6 +50,13 @@ module.exports = function(api){
         },
         cpf: {
             type: String,
+            validate: {
+                validator: function(cpf) {
+                    console.log('passou aqui');
+                    return isCpf(cpf);
+                },
+                message: 'CPF informado é inválido!'
+            },
             required: 'CPF do Cliente é Obrigatório'
         },
         endereco: {
