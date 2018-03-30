@@ -8,7 +8,23 @@ module.exports = function(api) {
     });
 
     api.get('/api/cliente', function(request, response) {
-        clienteController.listarClientes(function(error, resultados) {
+        if (request.query.cpf)
+        {
+            clienteController.procurarCliente(request.query.cpf, function(error, result){
+                if (error) {
+                    console.log(error);
+                    response.json({
+                        message: error,
+                        status: 500
+                    });
+                }
+
+                response.json({
+                    result
+                });
+            });
+        }
+        clienteController.listarClientes(function(error, result) {
             if (error) {
                 console.log(error);
                 response.json({
@@ -18,13 +34,13 @@ module.exports = function(api) {
             }
 
             response.json({
-                resultados
+                result
             });
         });
     });
 
     api.post('/api/cliente', function(request, response) {
-        clienteController.salvarCliente(request.body, function(error, resultado) {
+        clienteController.salvarCliente(request.body, function(error, result) {
             if (error) {
                 console.log(error);
                 response.json({
@@ -34,7 +50,7 @@ module.exports = function(api) {
                 return;
             }
             response.json({
-                resultado
+                result
             });
         });
     });

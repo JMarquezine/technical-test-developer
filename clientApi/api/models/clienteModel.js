@@ -1,6 +1,19 @@
 module.exports = function(api){
     var Schema = api.infra.db.Schema;
 
+    var TelefoneSchema = new Schema({
+        ddd: {
+            type: String
+        },
+        numeroTelefone: {
+            type: String
+        },
+        tipo: {
+            type: String,
+            enum: ['residencial', 'celular', 'comercial']
+        }
+    });
+
     var EnderecoSchema = new Schema({
         rua: {
             type: String
@@ -9,6 +22,9 @@ module.exports = function(api){
             type: Number
         },
         complemento: {
+            type: String
+        },
+        bairro: {
             type: String
         },
         cidade: {
@@ -38,6 +54,8 @@ module.exports = function(api){
             type: EnderecoSchema,
             required: 'Endereço do Cliente é Obrigatório'
         },
+        telefone: 
+            [ TelefoneSchema ],
         email: {
             type: String,
             required: 'E-mail do Cliente é Obrigatório'
