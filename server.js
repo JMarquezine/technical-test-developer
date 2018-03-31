@@ -1,7 +1,6 @@
-var host = "localhost";
-var porta = 8080;
+require('dotenv').load();
 var api = require('./config/express')();
 
-api.listen(porta, host, function() {
-    console.log("Web Api rodando em http://" + host + ":" + porta + "/");
+api.listen(process.env.PORTA, process.env.HOST, function() {
+  console.log('Web Api rodando em http://' + process.env.HOST + ':' + process.env.PORTA + '/');
 });
