@@ -1,33 +1,32 @@
-var mongoose = undefined;
-var Cliente = undefined;
+var mongoose;
+var Cliente;
 
-function clienteController() {
-    
-}
+function ClienteController() {}
 
-clienteController.prototype.listarClientes = function(callback) {
-    Cliente.find({}, callback);
-}
+ClienteController.prototype.listarClientes = function(callback) {
+  Cliente.find({}, callback);
+};
 
-clienteController.prototype.salvarCliente = function(clienteBody, callback) {
-    if (clienteBody.cpf) {
-        var cliente = new Cliente(clienteBody);
-        error = cliente.validateSync();
-        if (error) {
-            callback(error.errors);
-        }
-        else{
-            Cliente.findOneAndUpdate({cpf: clienteBody.cpf}, clienteBody, {upsert: true, new: true}, callback);
-        }
+ClienteController.prototype.salvarCliente = function(clienteBody, callback) {
+  if (clienteBody.cpf) {
+    var cliente = new Cliente(clienteBody);
+
+    var error = cliente.validateSync();
+
+    if (error) {
+      callback(error.errors);
+    } else {
+      Cliente.findOneAndUpdate({cpf: clienteBody.cpf}, clienteBody, {upsert: true, new: true}, callback);
     }
-}
+  }
+};
 
-clienteController.prototype.procurarCliente = function(cpfPesquisa, callback) {
-    Cliente.findOne({cpf : cpfPesquisa}, callback);
-}
+ClienteController.prototype.procurarCliente = function(cpfPesquisa, callback) {
+  Cliente.findOne({cpf: cpfPesquisa}, callback);
+};
 
 module.exports = function(api) {
-    mongoose = api.infra.db;
-    Cliente = mongoose.model('Clientes');
-    return clienteController;
-}
+  mongoose = api.infra.db;
+  Cliente = mongoose.model('Clientes');
+  return ClienteController;
+};
