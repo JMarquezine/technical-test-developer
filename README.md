@@ -40,29 +40,30 @@ It should return a json with status = 200
 * Insere/Atualiza um novo cliente
   * Ex:
     * BODY 
-    ```
-      {
-            "name": <nome_do_cliente>,
-            "estadoCivil": ['solteiro(a)', 'casado(a)', 'divorciado(a)'],
-            "cpf": <cpf_do_cliente>,
-            "email": <email_do_cliente>,
-            "endereco": {
-                "rua": <endereco>,
-                "numero": <numero_do_endereco>,
-                "cep": <cep>,
-                "complemento": <complemento>,
-                "bairro": <bairro>,
-                "cidade": <cidade>,
-                "estado": <estado>,
-                "pais": <pais>
-            },
-            "telefone": [{
-              "ddd": <ddd>,
-              "numeroTelefone": <numero_do_telefone>,
-              "tipo": [ 'residencial', 'celular', 'comercial' ]
-            }]
-          }
-    ```
+
+```json 
+[{
+        "name": <nome_do_cliente>,
+        "estadoCivil": ['solteiro(a)', 'casado(a)', 'divorciado(a)'],
+        "cpf": <cpf_do_cliente>,
+        "email": <email_do_cliente>,
+        "endereco": {
+            "rua": <endereco>,
+            "numero": <numero_do_endereco>,
+            "cep": <cep>,
+            "complemento": <complemento>,
+            "bairro": <bairro>,
+            "cidade": <cidade>,
+            "estado": <estado>,
+            "pais": <pais>
+        },
+        "telefone": [{
+          "ddd": <ddd>,
+          "numeroTelefone": <numero_do_telefone>,
+          "tipo": [ 'residencial', 'celular', 'comercial' ]
+        }]
+  }]
+```
     
 ## Authors
 
