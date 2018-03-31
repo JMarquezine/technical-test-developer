@@ -1,12 +1,12 @@
 # PROPOSED SOLUTION
 
 Clients Api created to handle requests of Creation, Update and Search using the following requirements:
-  - Client identification will be a CPF*.
-  - CPF must be valid.
-  - Client is allowed to have only one address.
-  - Client is allowed to have multiple phone numbers.
-  - Client has a Name, E-mail and Marital Status.
-  - All data is mandatory, system will prevent registrations with missing information.
+  * Client identification will be a CPF.
+  * CPF must be valid.
+  * Client is allowed to have only one address.
+  * Client is allowed to have multiple phone numbers.
+  * Client has a Name, E-mail and Marital Status.
+  * All data is mandatory, system will prevent registrations with missing information.
 
 # HOW TO RUN
 
@@ -26,17 +26,17 @@ It should return a json with status = 200
 
 ## GET
 /api/cliente
-  - Retorna todos os clientes cadastrados
+  * Retorna todos os clientes cadastrados
   
 /api/cliente?cpf=<sua_busca_aqui>
-  - Retorna o cliente que possua o cpf de busca informado.
+  * Retorna o cliente que possua o cpf de busca informado.
 
 ## POST
 /api/cliente
-  - Insere/Atualiza um novo cliente
-  - Ex:
-    - BODY 
-    ```json
+  * Insere/Atualiza um novo cliente
+  * Ex:
+   * BODY 
+    ```
       {
             "name": <nome_do_cliente>,
             "estadoCivil": ['solteiro(a)', 'casado(a)', 'divorciado(a)'],
@@ -59,4 +59,8 @@ It should return a json with status = 200
             }]
           }
     ```
+## Authors
+
+* **Juan Gustavo Marquezine** - *Initial work* - [PurpleBooth](https://github.com/JMarquezine)
+
 That's it!
